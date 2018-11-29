@@ -11,7 +11,7 @@
  .logIn1 {
     position: relative;
     margin: 50px auto;
-    width: 380px;
+    width: 450px;
     padding: 10px 10px 10px;
     border-radius: 0px;
  }
@@ -30,19 +30,19 @@
  }
  .leftUp{
     float:left;
-    width:20%;
+    width:24%;
     height:100px;
  }
  .logInTitleImage{
     float: left;
-    width:60%;
+    width:52%;
     height:100px;
-    background:url("/stylesheets/Tppimage.png") no-repeat;
+    background:url("Tppimage.png") no-repeat;
     background-size:228px 130px;
  }
  .rightUp{
     float:right;
-    width:20%;
+    width:24%;
     height:100px;
  }
  .logInTitle {
@@ -61,6 +61,7 @@
     width:100%;
     clear:both;
     float:center;
+    text-align: center;
     padding-top:30px;
     padding-bottom: 30px;
     border-right:1px solid rgb(182, 102, 219);

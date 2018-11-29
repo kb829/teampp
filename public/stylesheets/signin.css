@@ -37,7 +37,7 @@
     float: left;
     width:60%;
     height:100px;
-    background:url("/views/styles/Tppimage.png") no-repeat;
+    background:url("/stylesheets/Tppimage.png") no-repeat;
     background-size:228px 130px;
  }
  .rightUp{
