@@ -2,9 +2,12 @@ const express = require('express')
 const path = require('path')
 const bodyParser=require('body-parser')
 const PORT = process.env.PORT || 5000
+var session=require('express-session');
 var app=express()
-var MongoClient = require('mongodb').MongoClient;
-var urlencodedParser = bodyParser.urlencoded({extended: false});
+var MongoStore=require('connect-mongo')(session)
+var MongoClient = require('mongodb').MongoClient
+//var mongoUrl="mongodb://localhost:5000"
+//var urlencodedParser = bodyParser.urlencoded({extended: false})
 
 MongoClient.connect('mongodb://localhost:5000/node_modules/mongodb',
   function (err, db) {
@@ -20,11 +23,32 @@ MongoClient.connect('mongodb://localhost:5000/node_modules/mongodb',
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended : true}))
 app.use(express.static(path.join(__dirname, 'public')))
+// app.use(function(req,res,next){
+//   req.session.userID=userID;
+//   req.session.userPW=userPW;
+// })
+app.use(session({
+  secret:'1234DSFs@adf1234!@#$asd',
+  resave: false,
+  saveUninitialized: true,
+  // store:new MongoStore({
+  //   url:mongoUrl,
+  //   ttl:60*60*24*7
+  // })
+}))
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 app.get('/', (req, res) => res.render('pages/logInpage'))
 app.get('/time',(req, res)=>res.send(showTimes()))
 app.get('/signUp',(req, res)=>res.render('pages/signUp'))
+app.get('/mainframe',function(req,res){
+  if(req.session.userID=="1234" && req.session.userPW=="1234"){
+    req.render('pages/mainframe')
+  }
+  else{
+    req.render('pages/logInpage')
+  }
+})
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
 app.post('/logInReceiver', function (req, res){
   // var userID = req.query.userID;
@@ -32,7 +56,7 @@ app.post('/logInReceiver', function (req, res){
   // res.send(userID+' '+userPW);
   console.log("ID : ", req.body.userID)
   console.log("PW", req.body.userPW)
-  res.send("hi")
+  req.render('pages/mainframe')
 })
 
 // express()
