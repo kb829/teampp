@@ -1,9 +1,19 @@
-const express = require('express')
-const path = require('path')
-const bodyParser=require('body-parser')
+const express = require('express');
+const path = require('path');
+const bodyParser=require('body-parser');
 const PORT = process.env.PORT || 5000
-var session=require('express-session')
-var app=express()
+var session=require('express-session');
+var multer = require('multer');
+var _storage = multer.diskStorage({
+  destination: function (req,file,cb){
+    cb(null, 'uploads/')  //이경로에 저장
+  },
+  filename: function(req, file, cb) {
+    cb(null, file.originalname);
+  }
+})
+var upload = multer({ storage: _storage});
+var app=express();
 var mongoose=require('mongoose');
 var MongoStore=require('connect-mongo')(session)
 var MongoClient = require('mongodb').MongoClient
@@ -52,6 +62,13 @@ app.get('/', (req, res) => res.render('pages/logInpage'))
 app.get('/logInpage',(req,res)=>res.render('pages/logInpage'))
 app.get('/time',(req, res)=>res.send(showTimes()))
 app.get('/signUp',(req, res)=>res.render('pages/signUp'))
+app.get('/upload',function(req,res){
+  res.render('upload');
+});
+app.post('/upload',upload.single('userfile'),function(req,res){
+  console.log(req.file);
+  res.send('Uploaded:'+req.file.filename);
+})
 // app.get('/auth/login',function(req,res){
 //   // if(req.session.userID=="1234" && req.session.userPW=="1234"){
 //   //   req.render('pages/mainframe')
@@ -90,7 +107,7 @@ app.post('/logInReceiver', function (req, res){
   User.findOne({'id':uid}).exec(function(err,user){
     var chk=false;
     console.log(user+"\n");
-    
+
     bcrypt.compare(pwd,user.password,function(err,ret){
       if(err){
         console.log('bcrypt compare error : ',err.message);
@@ -182,7 +199,7 @@ app.get('/scheduleManageRe',function(req,res){
 //     var userPW = req.query.userPW;
 //     res.send(userID+' '+userPW);
 //   })
-  
+
 showTimes = () => {
   let result =''
   const times = process.env.TIMES || 5
