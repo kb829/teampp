@@ -9,7 +9,7 @@
   <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 </head>
   <body>
-    <form class="logIn1" id="logInform">
+    <form class="logIn1" id="logInform" method="POST" action='/signUpReceiver'>
         <div id="leftU" class="leftUp">
             <div id="leftUp" style="height:50%"></div>
             <div id="leftDown" style="height:50%; border-left:1px solid rgb(182, 102, 219); border-top:1px solid rgb(182, 102, 219)"></div>
@@ -22,35 +22,35 @@
         <div id="IDfield" class="field">
             <span style="float:right">
                 <label style="text-align: right"> ID
-                    <input type="text" class="logInInput" placeholder="15자 내외" name="ID" size="15" autofocus="" required="">
+                    <input type="text" class="logInInput" placeholder="15자 내외" name="signID" size="15" autofocus required>
                 </label>
             </span>
         </div>
         <div id="PWfield" class="field">
             <span style="float:right">
                 <label style="text-align: right"> Password
-                    <input type="password" class="logInInput" placeholder="20자 내외" name="PW" size="20" required="">
+                    <input type="password" class="logInInput" placeholder="20자 내외" name="signPW" size="20" required>
                 </label>
             </span>
         </div>
         <div id="ChkPWfield" class="field">
             <span style="float:right">
                 <label style="text-align: right"> Check Password
-                    <input type="password" class="logInInput" placeholder="비밀번호를 확인하세요." name="ChkPW" size="20" required="">
+                    <input type="password" class="logInInput" placeholder="비밀번호를 확인하세요." name="checkPW" size="20" required>
                 </label>
             </span>
         </div>
         <div id="Namefield" class="field">
             <span style="float:right">
                 <label style="text-align: right"> Name
-                    <input type="text" class="logInInput" placeholder="" name="Name" size="15" required="">
+                    <input type="text" class="logInInput" placeholder="" name="signName" size="15" required>
                 </label>
             </span>
         </div>
         <div id="Mailfield" class="field">
             <span style="float:right">
                 <label style="text-align: right"> E-mail
-                    <input type="text" class="logInInput" placeholder="" name="E-mail" size="30" required="">
+                    <input type="text" class="logInInput" placeholder="" name="signEmail" size="30" required>
                 </label>
             </span>
         </div>

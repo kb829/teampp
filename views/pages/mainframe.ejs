@@ -6,47 +6,59 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>team++_main</title>
 	<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-	<link href="/stylesheet/mainframe.css" rel="stylesheet">
+	<link href="/stylesheets/mainframe.css" rel="stylesheet">
+	<script src="/javascripts/changePage.js"></script>
 </head>
  <body>
-		<div class="main" id="sidebar">
-			<img src="/stylesheets/Tppimage.png"></img><p>
+
+<div class="wrapper_main">
+	<div class="wrapper_left">
+		<img class="img_logo" src="/stylesheets/Tppimage.png"></img>
+
+		<div class="menu_main" id="sidebar">
 <ul>
-  <li><a href="#"><button type="button" class="btn" >Project<p> Manager</button><p></a>
- <ul>
-		<li><a href="3">sub menu1_1</a></li>
-		<li><a href="3">sub menu1_2</a></li>
-		<li><a href="3">sub menu1_3</a></li>
- </ul>
-</li>
-  <li><a href="#"><button type="button" class="btn" >Schedule<p> Manager</button><p></a>
-    <ul>
-       <li><a href="3">sub menu2_1</a></li>
-       <li><a href="3">sub menu2_2</a></li>
-       <li><a href="3">sub menu2_3</a></li>
-    </ul>
-  </li>
-  <li><a href="#"><button type="button" class="btn" >Project<p> Manager</button><p></a>
- <ul>
-		<li><a href="3">sub menu3_1</a></li>
-		<li><a href="3">sub menu3_2</a></li>
-		<li><a href="3">sub menu3_33</a></li>
- </ul>
-</li>
+<li><button href="#" class="menu_btn"> Project<p> Manager<p></button>
+<ul>
+	<li><button href="/manageVerRe" class="sub_btn" onclick="manageVerRe()">버전 관리</button></li>
+	<li><button href="/fileupRe" class="sub_btn" onclick="fileupRe()">파일 업로드</button></li>
+	<li><button href="/voteRe" class="sub_btn" onclick="voteRe()">투표</button></li>
 </ul>
-		<div class="btn_position">
-   	<button type="button" class="change_project" >변경</button><p>
+</li>
+<li><button href="/scheduleManageRe" class="menu_btn" onclick="scheduleManageRe()">Schedule<p> Manager<p></button></li>
+<li><button href="#" class="menu_btn">Project<p> Manager<p></button></li>
+</ul>
 		</div>
+	</div>
+
+	<div class="wrapper_right">
+		<button type="button" class="project_btn" onclick="toSubmitProject()" >변경</button>
 		<div class = "tab_main">
-
+				<% if(chk=='0'){ %>
+					안녕하세요 <%= name %>님
+				<% } %>
+				<% if(chk =='1'){ %>
+					<% include ../partials/manageVer.ejs %>
+				<% } else if(chk=='2'){ %>
+					<% include ../partials/fileUp.ejs %>
+				<% } else if(chk=='3') { %>
+					<% include ../partials/voteWin.ejs %>
+				<% } else if(chk=='4') { %>
+					<% include ../partials/scheduleManage.ejs %>
+				<% } %>
 		</div>
-		<div class = "check_main">
+	</div>
+</div>
 
+
+
+<div class="wrapper_bottom">
+		<div class = "check_main">
+				<% include ../partials/checkWin.ejs %>
 		</div>
 		<div class = "notice_main">
-
+				<% include ../partials/noticeWin.ejs %>
 		</div>
-
+</div>
 
 	 <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
 	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
