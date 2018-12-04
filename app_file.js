@@ -52,6 +52,8 @@ app.get('/', (req, res) => res.render('pages/logInpage'))
 app.get('/logInpage',(req,res)=>res.render('pages/logInpage'))
 app.get('/time',(req, res)=>res.send(showTimes()))
 app.get('/signUp',(req, res)=>res.render('pages/signUp'))
+app.get('/project',(req, res)=>res.render('pages/project'))
+app.get('/popup_Pro',(req, res)=>res.render('pages/popup_Pro'))
 // app.get('/auth/login',function(req,res){
 //   // if(req.session.userID=="1234" && req.session.userPW=="1234"){
 //   //   req.render('pages/mainframe')
@@ -90,7 +92,7 @@ app.post('/logInReceiver', function (req, res){
   User.findOne({'id':uid}).exec(function(err,user){
     var chk=false;
     console.log(user+"\n");
-    
+
     bcrypt.compare(pwd,user.password,function(err,ret){
       if(err){
         console.log('bcrypt compare error : ',err.message);
@@ -157,7 +159,9 @@ app.get('/voteRe',function(req,res){
 app.get('/scheduleManageRe',function(req,res){
   res.render("pages/mainframe",{chk:'4'});
 })
-
+app.post('/popupPro', function (req, res){
+  console.log("Project_name : ", req.body.Project_name)
+})
 // express()
 //   .use(express.static(path.join(__dirname, 'public')))
 //   .set('views', path.join(__dirname, 'views'))
@@ -182,7 +186,7 @@ app.get('/scheduleManageRe',function(req,res){
 //     var userPW = req.query.userPW;
 //     res.send(userID+' '+userPW);
 //   })
-  
+
 showTimes = () => {
   let result =''
   const times = process.env.TIMES || 5
