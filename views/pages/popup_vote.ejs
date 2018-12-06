@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>addVote</title>
+  <link  href="/stylesheets/popup_Vote.css" rel="stylesheet" type="text/css">
+ <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <style>
+    input[type="radio"]{
+      -webkit-transform: scale(1.5);
+      transform: scale(1.5);
+    }
+    </style>
+</head>
+<body>
+  <form class="main_Vote" id="logInform">
+      <div id="titleName" class="title">
+        투표 등록
+        </div>
+        <div id="nameField" class="field_Vote">
+          <span style="float:right">
+              <label style="text-align: right"> Vote name
+                <input type="text" class="Input_Vote" name="Vote name" size="15">
+              </label>
+          </span>
+        </div>
+        <div id="selectVote" class="field_Vote">
+          <span style="float:right">
+            <label style="text-align: left">
+              <input type="radio" name="check vote" value="version update"> version update <br>
+              <input type="radio" name="check vote" value="exile member"> exile member
+            </label>
+          </span>
+        </div>
+      <div id="bottom" class="formBottom_Vote">
+          <input type="submit" value="생성" onclick="javascript:self.close();" class="Button_Vote"> 
+          <input type="button" value="취소" onclick="javascript:self.close();" class="Button_Vote">
+      </div>
+  </form>
+
+  <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
+  <script src="./Team++_files/jquery.min.js.다운로드"></script>
+  <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
+  <script src="file:///C:/Users/lynev/Desktop/%EC%8F%98%EA%B3%B5/%EC%83%88%20%ED%8F%B4%EB%8D%94/%EC%83%88%20%ED%8F%B4%EB%8D%94/bootstrap.min.js"></script>
+</body>
+</html>

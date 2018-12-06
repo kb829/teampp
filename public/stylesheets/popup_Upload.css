@@ -1,0 +1,61 @@
+ .main_Upload {
+    position: center;
+    margin: 0px;
+    width: 490px;
+    height: 300px;
+    /*padding: 0px 0px 0px;*/
+    border-radius: 0px;
+	border-top:30px solid rgb(182, 102, 219);
+  border-right:2px solid rgb(182, 102, 219);
+	border-left:2px solid rgb(182, 102, 219);
+	border-bottom:2px solid rgb(182, 102, 219);
+ }
+ .title_Upload{
+   text-allign: center;
+ 	 padding-top: 10px;
+   padding-left: 170px;
+   font-size: 30px;
+ }
+ .field_Upload{
+    float: center;
+    width: 100%;
+    padding-left: 90px;
+    padding-top: 50px;
+    padding-right: 90px;
+    height:30px;
+    width:100%;
+    clear:both;
+    font-size:14px;
+ }
+ .formBottom_Upload{
+    height:70px;
+    width:100%;
+    clear:both;
+    float:center;
+    text-align: center;
+    padding-top:100px;
+    padding-bottom: 60px;
+ }
+.Button_Upload {
+	 vertical-align: top;
+	 width: 120px;
+	 height: 40px;
+	 padding: 0px;
+	 font-size: 18px;
+	 color: white;
+	 text-align: center;
+	 background: rgb(182, 102, 219);
+	 border: 0;
+	 border-radius: 5px;
+	 cursor: pointer;
+}
+ .Input_Upload {
+    width: 230px;
+    height: 40px;
+    margin-bottom: 25px;
+    padding: 0 15px 2px;
+    font-size: 17px;
+    background: white;
+    border: 2px solid rgb(182, 102, 219);
+    border-radius: 4px;
+ }

@@ -13,3 +13,6 @@ function scheduleManageRe(){
 function toSubmitPage(){
     location.href="/signUp";
 }
+function toSubmitProject(){
+    location.href="/project";
+}
