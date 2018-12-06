@@ -1,1 +1,37 @@
-투표
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>team++_File</title>
+	 <link href="css/bootstrap.css" rel="stylesheet">
+	 <link href ="css/site.css" rel="stylesheet">
+		<link href="css/main.css" rel="stylesheet">
+		<link href="/stylesheets/voteWin.css" rel="stylesheet">
+		<script src="/javascripts/highcharts.js"></script>
+		<script src="/javascripts/exporting.js"></script>
+		<script src="/javascripts/export-data.js"></script>
+</head>
+ <body>
+   <div id="voteWin" class="div_root">
+		 <div id="voteList" class="voteListFrame">
+			 <p class="voteTitle"> 투표 목록 </p>
+			 <button type="button" class="project_btn" onclick="toSubmitProject()">추가</button>
+			 <div id="vote1" class="voteList"> ● Vote_01 </div>
+			 <div id="vote2" class="voteList"> ● Vote_02 </div>
+			 <div id="vote3" class="voteList"> ● Vote_03 </div>
+		 </div>
+		 <div id="voteRes" class="voteResFrame">
+			 	<div id="resultFrame" class="resFrame">
+ 		 			<div id="container" style="min-width: 500px; height: 450px;"></div>
+				</div>
+		 </div>
+	 </div>
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	 <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
+	 <script type="text/javascript" src="js/bootstrap.min.js"></script>
+	 <script type="text/javascript" src="js/main.js"></script>
+	 <script type="text/javascript" src="/javascripts/vote.js"></script>
+ </body>
+</html>
