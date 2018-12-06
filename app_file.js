@@ -64,7 +64,7 @@ app.get('/', (req, res) => res.render('pages/logInpage'))
 app.get('/logInpage',(req,res)=>res.render('pages/logInpage'))
 app.get('/time',(req, res)=>res.send(showTimes()))
 app.get('/signUp',(req, res)=>res.render('pages/signUp'))
-app.get('/popup_Proj',(req, res)=>res.render('pages/popup_Pro'))
+app.get('/popup_Proj',(req, res)=>res.render('pages/popup_Proj'))
 // app.get('/auth/login',function(req,res){
 //   // if(req.session.userID=="1234" && req.session.userPW=="1234"){
 //   //   req.render('pages/mainframe')
@@ -83,23 +83,10 @@ app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 var User=mongoose.model('User',schema.userSchema);
 app.post('/logInReceiver', function (req, res){
-  // var userID = req.query.userID;
-  // var userPW = req.query.userPW;
-  // res.send(userID+' '+userPW);
   console.log("ID : ", req.body.userID)
   console.log("PW : ", req.body.userPW)
   var uid=req.body.userID;
   var pwd=req.body.userPW;
-  // var query={id:req.body.userID};
-  // var table=db.collection("Users").findOne({query},function(err,result){
-  //   if(err)throw err;
-  //   console.log(result);
-  //   if(uid===result.id && pwd===result.password){
-  //     res.render('pages/mainframe');
-  //   }else{
-  //     res.send('who are you <a href="/logInpage">login</a>')
-  //   }
-  // })
   User.findOne({'id':uid}).exec(function(err,user){
     var chk=false;
     console.log(user+"\n");
@@ -113,7 +100,10 @@ app.post('/logInReceiver', function (req, res){
       }else{
         console.log(ret);
         if(ret){
-          res.render('pages/mainframe',{chk:'0',name:user.name});
+          //res.render('pages/mainframe',{chk:'0',name:user.name});
+          var yname=user.name;
+          req.session.userName=yname;
+          res.render('pages/project',{name:req.session.userName});
         }
         else{
           res.redirect('/logInpage');
@@ -141,28 +131,14 @@ app.post('/signUpReceiver', function (req, res){
   })
   res.render('pages/logInpage')
 })
-
+app.get('/selectProjRe',function(req,res){
+  res.render("pages/project",{name:req.session.userName});
+})
+app.get('/mainframe',function (req,res){
+  res.render("pages/mainframe",{chk:'0'});
+})
 app.get('/manageVerRe',function(req,res){
   res.render("pages/mainframe",{chk:'1'});
-//   var lis='';
-//   for(var i=0;i<5;++i){
-//     lis+='<li>coding '+i+'</li>';
-//   }
-//   var output=`
-//   <!DOCTYPE html>
-//   <html>
-//     <head>
-//       <meta charset="utf-8">
-//     </head>
-//     <body>
-//       hello Dynamic html~~!
-//           <ul>
-//               ${lis} <!--문자열 내에서 변수 사용-->
-//           </ul>
-//     </body>
-//   </html>
-//   `;
-// res.send(output);
 })
 app.get('/fileupRe',function(req,res){
   res.render("pages/mainframe",{chk:'2'});
@@ -181,11 +157,11 @@ app.post('/uploadFile',upload.single('userFile'),function(req,res){
   console.log(req.file);
   res.send('Uploaded:'+req.file.filename);
 })
-var myController=(req,res)=>{
-  var filename='myFile.ext';
-  var absPath=path.join(__dirname,'uploads/',filename);
-  var relPath=path.join('')
-}
+// var myController=(req,res)=>{
+//   var filename='myFile.ext';
+//   var absPath=path.join(__dirname,'uploads/',filename);
+//   var relPath=path.join('')
+// }
 
 // express()
 //   .use(express.static(path.join(__dirname, 'public')))

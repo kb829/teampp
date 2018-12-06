@@ -19,3 +19,11 @@ function toLogin(){
 function toUpload(){
     window.open("/uploadWin", "new_upl", 'width=500, height=300, resizable=no, scrollbars= 0, toolbar=0, menubar=no');
 }
+function popup_project(){
+    window.open("popup_Proj", "new_Project", 'width=500, height=300, resizable=no, scrollbars= 0, toolbar=0, menubar=no');
+}
+function select_proj(){
+    location.href="/mainframe";
+}function toSubmitProject(){
+    location.href="/selectProjRe";
+}
