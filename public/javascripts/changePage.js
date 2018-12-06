@@ -24,6 +24,10 @@ function popup_project(){
 }
 function select_proj(){
     location.href="/mainframe";
-}function toSubmitProject(){
+}
+function toSubmitProject(){
     location.href="/selectProjRe";
+}
+function teamManageRe(){
+    location.href="/teamManageRe";
 }

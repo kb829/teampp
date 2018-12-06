@@ -25,7 +25,7 @@
 </ul>
 </li>
 <li><button href="/scheduleManageRe" class="menu_btn" onclick="scheduleManageRe()">Schedule<p> Manager<p></button></li>
-<li><button href="#" class="menu_btn">Project<p> Manager<p></button></li>
+<li><button href="/teamManageRe" class="menu_btn" onclick="teamManageRe()">Team<p> Manager<p></button></li>
 </ul>
 		</div>
 	</div>
@@ -41,12 +41,14 @@
 					<% include ../partials/voteWin.ejs %>
 				<% } else if(chk=='4') { %>
 					<% include ../partials/scheduleManage.ejs %>
-				<% } else {} %>
+				<% } else if(chk=='5') { %>
+					<% include ../partials/teamManage.ejs %>
+				<% } else { %>
+					<%= name%> 님 안녕하세요!
+				<% } %>
 		</div>
 	</div>
 </div>
-
-
 
 <div class="wrapper_bottom">
 		<div class = "check_main">
@@ -60,6 +62,5 @@
 	 <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
 	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	 <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
-	 <script type="text/javascript" src="/javascript/mainframe.js"></script>
  </body>
 </html>

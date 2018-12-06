@@ -135,7 +135,7 @@ app.get('/selectProjRe',function(req,res){
   res.render("pages/project",{name:req.session.userName});
 })
 app.get('/mainframe',function (req,res){
-  res.render("pages/mainframe",{chk:'0'});
+  res.render("pages/mainframe",{chk:'0', name:req.session.userName});
 })
 app.get('/manageVerRe',function(req,res){
   res.render("pages/mainframe",{chk:'1'});
@@ -149,7 +149,9 @@ app.get('/voteRe',function(req,res){
 app.get('/scheduleManageRe',function(req,res){
   res.render("pages/mainframe",{chk:'4'});
 })
-
+app.get('/teamManageRe',function(req,res){
+  res.render("pages/mainframe",{chk:'5'});
+})
 app.get('/uploadWin',function(req,res){
   res.render("pages/popup_upload");
 });
@@ -157,6 +159,13 @@ app.post('/uploadFile',upload.single('userFile'),function(req,res){
   console.log(req.file);
   res.send('Uploaded:'+req.file.filename);
 })
+app.get('/:file(*)',(req, res) => {
+  var file = req.params.file;
+  var fileLocation = path.join('./uploads',file);
+  console.log(file);
+  console.log(fileLocation);
+  res.download(fileLocation, file); //경로의 파일을 다운로드
+});
 // var myController=(req,res)=>{
 //   var filename='myFile.ext';
 //   var absPath=path.join(__dirname,'uploads/',filename);
