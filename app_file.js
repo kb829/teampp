@@ -12,7 +12,9 @@ var mongoUrl="mongodb://localhost:27017/data"
 var bcrypt = require("bcrypt-nodejs");
 //multer
 var multer = require('multer');
-var fs=require('fs');
+var http = require('http');
+var fs = require('fs');
+var url = require('url');
 //var urlencodedParser = bodyParser.urlencoded({extended: false})
 
 // MongoClient.connect('mongodb://localhost:27017',
@@ -36,19 +38,6 @@ mongoose.connect('mongodb://localhost:27017/data');
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended : true}))
 app.use(express.static(path.join(__dirname, 'public')))
-var _storage = multer.diskStorage({
-  destination: function (req,file,cb){
-    cb(null, 'uploads/')  //이경로에 저장
-  },
-  filename: function(req, file, cb) {
-    cb(null, file.originalname);
-  }
-})
-var upload = multer({ storage: _storage});
-// app.use(function(req,res,next){
-//   req.session.userID=userID;
-//   req.session.userPW=userPW;
-// })
 app.use(session({
   secret:'1234DSFs@adf1234!@#$asd',
   resave: false,
@@ -65,6 +54,20 @@ app.get('/logInpage',(req,res)=>res.render('pages/logInpage'))
 app.get('/time',(req, res)=>res.send(showTimes()))
 app.get('/signUp',(req, res)=>res.render('pages/signUp'))
 app.get('/popup_Proj',(req, res)=>res.render('pages/popup_Proj'))
+
+var Proj=mongoose.model('Proj',schema.projSchema);
+app.post('/popupProj',function(req,res){
+  console.log("Project name : ", req.body.Project_name);
+  var userproj=new Proj({
+    name:req.body.Project_name,
+    leader:req.session.userkey,
+    user:req.session.userdb
+  })
+  userproj.save(function(err,userproj){
+    if(err) return console.error(err);
+    console.dir(userproj);
+  })
+})
 // app.get('/auth/login',function(req,res){
 //   // if(req.session.userID=="1234" && req.session.userPW=="1234"){
 //   //   req.render('pages/mainframe')
@@ -88,7 +91,6 @@ app.post('/logInReceiver', function (req, res){
   var uid=req.body.userID;
   var pwd=req.body.userPW;
   User.findOne({'id':uid}).exec(function(err,user){
-    var chk=false;
     console.log(user+"\n");
     if(user==null){
       res.redirect('/logInpage');
@@ -103,7 +105,18 @@ app.post('/logInReceiver', function (req, res){
           //res.render('pages/mainframe',{chk:'0',name:user.name});
           var yname=user.name;
           req.session.userName=yname;
-          res.render('pages/project',{name:req.session.userName});
+          req.session.userkey=user._id;
+          req.session.userdb=user;
+          Proj.find({"user":{$elemMatch:{"_id":req.session.userkey}}}).exec(function(err,projList){
+            if(err) return console.log(err);
+            console.log(projList+"\n");
+            if(projList==null){
+              res.render("pages/project",{name:req.session.userName, pList:'0'});
+            }
+            else{
+              res.render("pages/project",{name:req.session.userName, pList: projList});
+            }
+          })
         }
         else{
           res.redirect('/logInpage');
@@ -132,7 +145,18 @@ app.post('/signUpReceiver', function (req, res){
   res.render('pages/logInpage')
 })
 app.get('/selectProjRe',function(req,res){
-  res.render("pages/project",{name:req.session.userName});
+  console.log("here");
+  Proj.find({"user":{$elemMatch:{"_id":req.session.userkey}}}).exec(function(err,projList){
+    if(err) return console.log(err);
+    var pList1=projList;
+    console.log(pList1+"\n");
+    if(pList1==null){
+      res.render("pages/project",{name:req.session.userName, pList:'0'});
+    }
+    else{
+      res.render("pages/project",{name:req.session.userName, pList:pList1});//pList1});
+    }
+  })
 })
 app.get('/mainframe',function (req,res){
   res.render("pages/mainframe",{chk:'0', name:req.session.userName});
@@ -152,6 +176,15 @@ app.get('/scheduleManageRe',function(req,res){
 app.get('/teamManageRe',function(req,res){
   res.render("pages/mainframe",{chk:'5'});
 })
+var _storage = multer.diskStorage({
+  destination: function (req,file,cb){
+    cb(null, 'uploads/')  //이경로에 저장
+  },
+  filename: function(req, file, cb) {
+    cb(null, file.originalname);
+  }
+})
+var upload = multer({ storage: _storage});
 app.get('/uploadWin',function(req,res){
   res.render("pages/popup_upload");
 });
@@ -159,13 +192,6 @@ app.post('/uploadFile',upload.single('userFile'),function(req,res){
   console.log(req.file);
   res.send('Uploaded:'+req.file.filename);
 })
-app.get('/:file(*)',(req, res) => {
-  var file = req.params.file;
-  var fileLocation = path.join('./uploads',file);
-  console.log(file);
-  console.log(fileLocation);
-  res.download(fileLocation, file); //경로의 파일을 다운로드
-});
 // var myController=(req,res)=>{
 //   var filename='myFile.ext';
 //   var absPath=path.join(__dirname,'uploads/',filename);

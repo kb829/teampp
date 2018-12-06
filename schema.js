@@ -5,7 +5,6 @@ var SALT_FACTOR = 10; // 값이 클수록 해시가 안전
 
 //유저스키마 정의
 var userSchema = mongoose.Schema({
-  //usernum: {type: Number, require: true, unique: true},
   id: {type: String, require: true},
   password: {type: String, require: true},
   name:{type: String, require: true}
@@ -23,12 +22,11 @@ var fileSchema = mongoose.Schema({
   location : {type: String, require: true}
 });
 var projSchema = mongoose.Schema({
-  //projnum: {type: Number, require: true, unique: true},
   name: {type: String, require: true},
-  leader: {type: Number, require: true},
+  leader: {type: String, require: true},
   user: [userSchema],
   file: [fileSchema],
-  notice: [noticeSchema] ,
+  notice: [noticeSchema],
   work: [workSchema]
 });
 

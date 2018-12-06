@@ -37,11 +37,11 @@ var today = new Date();//오늘 날짜//내 컴퓨터 로컬을 기준으로 tod
                   cell.innerHTML = "<font color=skyblue>" + i
                    row = calendar.insertRow();
               }
-              /*오늘의 날짜에 노란색 칠하기*/
+              /*오늘의 날짜에 색 칠하기*/
               if (today.getFullYear() == date.getFullYear()
                  && today.getMonth() == date.getMonth()
                  && i == date.getDate()) {
-                cell.bgColor = "#B666DB";//셀의 배경색을 노랑으로 
+                cell.bgColor = "#B666DB";
                }
              }
             }
