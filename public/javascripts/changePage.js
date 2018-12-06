@@ -31,3 +31,6 @@ function toSubmitProject(){
 function teamManageRe(){
     location.href="/teamManageRe";
 }
+function toSubmitVote(){
+    window.open("popup_vote", "new_Project", 'width=500, height=300, resizable=no, scrollbars= 0, toolbar=0, menubar=no');
+}

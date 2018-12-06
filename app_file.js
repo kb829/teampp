@@ -54,7 +54,7 @@ app.get('/logInpage',(req,res)=>res.render('pages/logInpage'))
 app.get('/time',(req, res)=>res.send(showTimes()))
 app.get('/signUp',(req, res)=>res.render('pages/signUp'))
 app.get('/popup_Proj',(req, res)=>res.render('pages/popup_Proj'))
-
+app.get('/project',(req, res)=>res.render('pages/project')) 
 var Proj=mongoose.model('Proj',schema.projSchema);
 app.post('/popupProj',function(req,res){
   console.log("Project name : ", req.body.Project_name);
@@ -187,6 +187,9 @@ var _storage = multer.diskStorage({
 var upload = multer({ storage: _storage});
 app.get('/uploadWin',function(req,res){
   res.render("pages/popup_upload");
+});
+app.get('/popup_vote',function(req,res){
+  res.render("pages/popup_vote");
 });
 app.post('/uploadFile',upload.single('userFile'),function(req,res){
   console.log(req.file);

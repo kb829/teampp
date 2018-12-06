@@ -3,42 +3,49 @@
 <html lang="ko">
 
 <head>
+
   <meta http-equiv="Content-Type" content="t ext/html; charset=utf-8">
+
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <title>sourceUpload</title>
+
   <!-- <script type="javascript" src="popup.js"></script> -->
-  <link href="/stylesheets/popup.css" rel="stylesheet">
+
   <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+  <link  href="/stylesheets/popup_Upload.css" rel="stylesheet" type="text/css">
+
 </head>
 
 <body>
-  <form class="logIn1" id="logInform" action="/uploadFile" method = "post"
+
+  <form class="main_Upload" id="logInform" action="upload/create" method = "post"
+
   enctype ="multipart/form-data">
-      <div id="leftU" class="leftUp">
-          <div id="leftUp" style="height:50%"></div>
-          <div id="leftDown" style="height:50%; border-left:1px solid rgb(182, 102, 219); border-top:1px solid rgb(182, 102, 219)"></div>
-      </div>
-      <div id="rightU" class="rightUp">
-          <div id="rightUp" style="height:50%"></div>
-          <div id="rightDown" style="height:50%; border-top:1px solid rgb(182, 102, 219); border-right:1px solid rgb(182, 102, 219)"></div>
-      </div>
-      <div id="titleName" class="title">
 
-      File Upload
 
-        </div>
-      <!--<div class="filebox bs3-primary" style="border-left:1px solid rgb(182, 102, 219);border-right:1px solid rgb(182, 102, 219)">
-        <input class="upload-name" value="파일선택" disabled="disabled">
-        <label for="ex_filename">업로드</label>
-        <input type="file" id="ex_filename" class="upload-hidden">-->
-<div style="border-right:1px solid rgb(182, 102, 219); border-left:1px solid rgb(182, 102, 219)";>
-        <input type="file" name="userFile" style>
+
+      <div id="titleName" class="title_Upload">File Upload</div>
+
+
+
+      <div class="field_Upload">
+
+        <input type="file" id="uploadFile">
+
       </div>
-      <div id="bottom" class="formBottom">
-          <input type="submit" value="Submit" onclick="javascript:window.close();" class="logInButton">
+
+      <div id="bottom" class="formBottom_Upload">
+
+          <input type="submit" value="Submit" onclick="javascript:self.close();" class="Button_Upload">
+
       </div>
+
   </form>
+
 
   <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
