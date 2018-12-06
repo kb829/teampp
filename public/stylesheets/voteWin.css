@@ -1,0 +1,74 @@
+.div_root{
+  margin:auto;
+  width:99%;
+}
+
+.voteListFrame{
+  width:50%;
+  float:left;
+  background-size:100%100%;
+}
+
+.voteList{
+  width : 10%
+  float : left;
+  font-size : 18px;
+  font-weight : bold;
+  margin-top : 5%;
+  margin-left : 25%;
+}
+
+.voteResFrame{
+  width:49%;
+  float:left;
+  background-size:100%100%;
+}
+
+.voteTitle {
+   width: 45%;
+   height: 40px;
+   margin-top: 10%;
+   margin-left: 25%;
+   padding: 8px 8px 2px;
+   font-size: 20px;
+   text-align : center;
+   color : white;
+   font-weight : bold;
+   background: rgb(182, 102, 219);
+   border: 2px solid rgb(182, 102, 219);
+   border-radius: 4px;
+}
+
+.project_btn {
+  position: relative;
+  float:right;
+  display: inline-block;
+  width: 10%;
+  font-size: 12px;
+  color: white;
+  background-color: rgb(182, 102, 219);
+  margin-top: 2px;
+  margin-right: 30%;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.resFrame{
+  position:relative;
+  height:468px;
+  width:500px;
+  border-left:1px solid rgb(182, 102, 219);
+}
