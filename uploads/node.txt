@@ -1,0 +1,4 @@
+taskkill /F /IM node.exe
+
+Created postgresql-cylindrical-95619 as DATABASE_URL
+Use heroku addons:docs heroku-postgresql to view documentation

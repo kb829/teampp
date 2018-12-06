@@ -18,12 +18,16 @@ var workSchema = mongoose.Schema({
   name: {type: String, require: true},
   work: {type: String, require: true}
 });
+var fileSchema = mongoose.Schema({
+  name : {type: String, require: true},
+  location : {type: String, require: true}
+});
 var projSchema = mongoose.Schema({
   //projnum: {type: Number, require: true, unique: true},
   name: {type: String, require: true},
   leader: {type: Number, require: true},
   user: [userSchema],
-  //file: [File],
+  file: [fileSchema],
   notice: [noticeSchema] ,
   work: [workSchema]
 });
@@ -94,13 +98,25 @@ workSchema.methods.workdata=function(){
   return this.work;
 };
 
+fileSchema.methods.fname=function()
+{
+  return this.name;
+};
+
+fileSchema.methods.filelocation=function()
+{
+  return this.location;
+};
+
 var User = mongoose.model("User",userSchema);
 var Proj= mongoose.model("Proj",projSchema);
 var Notice= mongoose.model("Notice",noticeSchema);
 var Work= mongoose.model("Work",workSchema);
+var FileS= mongoose.model("File",fileSchema);
 
 module.exports= User;
 module.exports= Proj;
 module.exports= Notice;
 module.exports= Work;
-module.exports=mongoose.model('User',userSchema);
+module.exports = FileS;
+//module.exports=mongoose.model('User',userSchema);

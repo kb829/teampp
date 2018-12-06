@@ -10,6 +10,9 @@ var MongoClient = require('mongodb').MongoClient
 var schema=require("./schema");
 var mongoUrl="mongodb://localhost:27017/data"
 var bcrypt = require("bcrypt-nodejs");
+//multer
+var multer = require('multer');
+var fs=require('fs');
 //var urlencodedParser = bodyParser.urlencoded({extended: false})
 
 // MongoClient.connect('mongodb://localhost:27017',
@@ -33,6 +36,15 @@ mongoose.connect('mongodb://localhost:27017/data');
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended : true}))
 app.use(express.static(path.join(__dirname, 'public')))
+var _storage = multer.diskStorage({
+  destination: function (req,file,cb){
+    cb(null, 'uploads/')  //이경로에 저장
+  },
+  filename: function(req, file, cb) {
+    cb(null, file.originalname);
+  }
+})
+var upload = multer({ storage: _storage});
 // app.use(function(req,res,next){
 //   req.session.userID=userID;
 //   req.session.userPW=userPW;
@@ -52,6 +64,7 @@ app.get('/', (req, res) => res.render('pages/logInpage'))
 app.get('/logInpage',(req,res)=>res.render('pages/logInpage'))
 app.get('/time',(req, res)=>res.send(showTimes()))
 app.get('/signUp',(req, res)=>res.render('pages/signUp'))
+app.get('/popup_Proj',(req, res)=>res.render('pages/popup_Pro'))
 // app.get('/auth/login',function(req,res){
 //   // if(req.session.userID=="1234" && req.session.userPW=="1234"){
 //   //   req.render('pages/mainframe')
@@ -90,7 +103,10 @@ app.post('/logInReceiver', function (req, res){
   User.findOne({'id':uid}).exec(function(err,user){
     var chk=false;
     console.log(user+"\n");
-    
+    if(user==null){
+      res.redirect('/logInpage');
+    }
+    else{
     bcrypt.compare(pwd,user.password,function(err,ret){
       if(err){
         console.log('bcrypt compare error : ',err.message);
@@ -104,6 +120,7 @@ app.post('/logInReceiver', function (req, res){
         }
       }
     })
+  }
   })
   //res.render('pages/mainframe')
 })
@@ -114,7 +131,6 @@ app.post('/signUpReceiver', function (req, res){
   console.log("Name : ", req.body.signName)
   console.log("E mail : ",req.body.signEmail)
   var userdata=new User({
-    usernum:'1',
     id:req.body.signID,
     password:req.body.signPW,
     name:req.body.signName
@@ -157,6 +173,19 @@ app.get('/voteRe',function(req,res){
 app.get('/scheduleManageRe',function(req,res){
   res.render("pages/mainframe",{chk:'4'});
 })
+
+app.get('/uploadWin',function(req,res){
+  res.render("pages/popup_upload");
+});
+app.post('/uploadFile',upload.single('userFile'),function(req,res){
+  console.log(req.file);
+  res.send('Uploaded:'+req.file.filename);
+})
+var myController=(req,res)=>{
+  var filename='myFile.ext';
+  var absPath=path.join(__dirname,'uploads/',filename);
+  var relPath=path.join('')
+}
 
 // express()
 //   .use(express.static(path.join(__dirname, 'public')))

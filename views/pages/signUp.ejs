@@ -7,6 +7,7 @@
   <title>Register</title>
   <link href="/stylesheets/signup.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <script src="/javascripts/changePage.js"></script>
 </head>
   <body>
     <form class="logIn1" id="logInform" method="POST" action='/signUpReceiver'>
@@ -56,7 +57,7 @@
         </div>
         <div id="bottom" class="formBottom">
             <input type="submit" value="회원가입" class="logInButton">  
-            <input type="button" value="취소" class="logInButton">
+            <input type="button" value="취소" class="logInButton" onclick="toLogin()">
         </div>
     </form>
 

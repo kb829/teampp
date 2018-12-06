@@ -13,3 +13,9 @@ function scheduleManageRe(){
 function toSubmitPage(){
     location.href="/signUp";
 }
+function toLogin(){
+    location.href="/logInpage"
+}
+function toUpload(){
+    window.open("/uploadWin", "new_upl", 'width=500, height=300, resizable=no, scrollbars= 0, toolbar=0, menubar=no');
+}
