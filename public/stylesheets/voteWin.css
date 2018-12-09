@@ -10,7 +10,7 @@
 }
 
 .voteList{
-  width : 10%
+  width : 10%;
   float : left;
   font-size : 18px;
   font-weight : bold;
@@ -39,7 +39,7 @@
    border-radius: 4px;
 }
 
-.project_btn {
+.vote_btn {
   position: relative;
   float:right;
   display: inline-block;

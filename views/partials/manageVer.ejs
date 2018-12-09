@@ -70,10 +70,24 @@
               document.getElementById('outputdiv').innerHTML = ds;
             }
             </SCRIPT>
+            <div style="float:left; width:30%;">
+                <ul style="list-style-type: none; font-size:30px; text-align: left; margin-left: 80px;margin-top: 40px">
+                    <li onclick="">● Version 1.1.0</li>
+                    <br>
+                    <li onclick="">● Version 1.0.3</li>
+                    <br>
+                    <li onclick="">● Version 1.0.2</li>
+                    <br>
+                    <li onclick="">● Version 1.0.1</li>
+                    <br>
+                    <li onclick="">● Version 1.0.0</li>
+                </ul>
+            </div>
+            <div style="float:right; width:50%; margin-top: 30px; margin-right:100px">
             <FORM action="#" onsubmit="return false;">
-            <TABLE WIDTH="50%"><TR>
+            <TABLE WIDTH="100%"><TR>
               <TD WIDTH="50%">
-            <H3>Text Version 1:</H3>
+            <H3>Version 1.1.0</H3>
             <TEXTAREA ID="text1" STYLE="width: 100%" ROWS=8>
             int main(){
                 int i=0;
@@ -85,7 +99,7 @@
             }
             </TEXTAREA></TD>
               <TD WIDTH="50%">
-            <H3>Text Version 2:</H3>
+            <H3>Version 1.0.3</H3>
             
             <TEXTAREA ID="text2" STYLE="width: 100%" ROWS=8>
             int main(){
@@ -104,4 +118,5 @@
             <P><INPUT TYPE="button" onClick="launch();" VALUE="Compute Diff"></P>
             
             </FORM>
-            <DIV ID="outputdiv"></DIV>
+            <DIV ID="outputdiv" style=""></DIV>
+        </div>

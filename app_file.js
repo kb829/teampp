@@ -43,18 +43,50 @@ app.get('/popup_projRe',function(req,res){
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 app.post('/logInReceiver', function (req, res){
-  console.log("ID : ", req.body.userID)
-  console.log("PW : ", req.body.userPW)
-  var adminID='admin';
-  var adminPW='404';
-  var uid=req.body.userID;
-  var pwd=req.body.userPW;
-  req.session.userID=uid;
-  if(uid==adminID && pwd==adminPW){
+  // console.log("ID : ", req.body.userID)
+  // console.log("PW : ", req.body.userPW)
+  // var adminID='admin';
+  // var adminPW='404';
+  // var uid=req.body.userID;
+  // var pwd=req.body.userPW;
+  // req.session.userID=uid;
+  // if(uid==adminID && pwd==adminPW){
+  //   res.render('pages/adminMain',{name:req.session.userID});
+  // }
+  // else{
+  //   res.render('pages/project', {chk:'0', name:req.session.userID, projectcnt});
+  // }
+  req.session.userID=req.body.userID;
+  if(req.body.userID=='admin'  && req.body.userPW=='404')
+  {
     res.render('pages/adminMain',{name:req.session.userID});
   }
   else{
-    res.render('pages/project', {chk:'0', name:req.session.userID, projectcnt});
+
+  fs.readFile('data/login.txt', function(err, data) {
+    if(err) throw err;
+    var array1 = data.toString().split("\n");
+    var array2;
+    var temp;
+    var id;
+    var pass;
+    var loc;
+    for(i in array1) {
+      temp= array1[i].indexOf(req.body.userID);
+        if(temp!=-1)
+        {
+           loc = i;
+           break;
+        }
+      }
+      array2=array1[loc].toString().split(" ");
+      id = array2[0];
+      pass = array2[1];
+      if((id == req.body.userID) &&(pass ==req.body.userPW) )
+      {
+        res.render('pages/project', {name:req.session.userID});
+      }
+    });
   }
 })
 app.post('/signUpReceiver', function (req, res){
@@ -64,7 +96,12 @@ app.post('/signUpReceiver', function (req, res){
   console.log("Name : ", req.body.signName)
   console.log("E mail : ",req.body.signEmail)
 
+  var temp;
+  temp = req.body.signID + " "+ req.body.signPW + " "+ req.body.signName +"\n";
+  fs.appendFile('data/login.txt', temp, function (err) {
+    if (err) throw err;
 
+  });
   res.render('pages/logInpage');
 })
 app.get('/selectProjRe',function(req,res){

@@ -25,12 +25,11 @@ width:1250px;
   float:left;
   height:160px;
   width:280px;
-  margin-right:2px;
-  margin-left: 10px;
+  margin-right:0px;
+  margin-left: 0px;
 }
 .project_btn {
   position: relative;
-  float:right;
   display: inline-block;
   width: 90px;
   font-size: 12px;
@@ -40,7 +39,6 @@ width:1250px;
   font-weight: normal;
   line-height: 1.42857143;
   text-align: center;
-  white-space: nowrap;
   vertical-align: middle;
   -ms-touch-action: manipulation;
   touch-action: manipulation;
