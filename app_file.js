@@ -10,19 +10,11 @@ var MongoClient = require('mongodb').MongoClient
 var schema=require("./schema");
 var mongoUrl="mongodb://localhost:27017/data"
 var bcrypt = require("bcrypt-nodejs");
-//var urlencodedParser = bodyParser.urlencoded({extended: false})
-
-// MongoClient.connect('mongodb://localhost:27017',
-//   (err, client)=> {
-//     if(err) throw err;
-//     var db=client.db('data');
-//     console.log(db);
-//     //client.close();
-// });
-// const pool=new Pool({
-//   connectionString: process.env.postgresql-cylindrical-95619,
-//   ssl: true
-// });
+//multer
+var multer = require('multer');
+var http = require('http');
+var fs = require('fs');
+var url = require('url');
 var db=mongoose.connection;
 db.on('error',console.error);
 db.once('open',function(){
@@ -33,10 +25,6 @@ mongoose.connect('mongodb://localhost:27017/data');
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended : true}))
 app.use(express.static(path.join(__dirname, 'public')))
-// app.use(function(req,res,next){
-//   req.session.userID=userID;
-//   req.session.userPW=userPW;
-// })
 app.use(session({
   secret:'1234DSFs@adf1234!@#$asd',
   resave: false,
@@ -52,60 +40,63 @@ app.get('/', (req, res) => res.render('pages/logInpage'))
 app.get('/logInpage',(req,res)=>res.render('pages/logInpage'))
 app.get('/time',(req, res)=>res.send(showTimes()))
 app.get('/signUp',(req, res)=>res.render('pages/signUp'))
-// app.get('/auth/login',function(req,res){
-//   // if(req.session.userID=="1234" && req.session.userPW=="1234"){
-//   //   req.render('pages/mainframe')
-//   // }
-//   // else{
-//   //   req.render('pages/logInpage')
-//   // }
-//   if(req.session.count){
-//     req.session.count++;
-//   }else{
-//     req.session.count=1;
-//   }
-//   res.send('count : '+req.session.count);
-// })
+app.get('/popup_Proj',(req, res)=>res.render('pages/popup_Proj'))
+app.get('/project',(req, res)=>res.render('pages/project'))
+var Proj=mongoose.model('Proj',schema.projSchema);
+app.post('/popupProj',function(req,res){
+  console.log("Project name : ", req.body.Project_name);
+  var userproj=new Proj({
+    name:req.body.Project_name,
+    leader:req.session.userkey,
+    user:req.session.userdb
+  })
+  userproj.save(function(err,userproj){
+    if(err) return console.error(err);
+    console.dir(userproj);
+  })
+})
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 var User=mongoose.model('User',schema.userSchema);
 app.post('/logInReceiver', function (req, res){
-  // var userID = req.query.userID;
-  // var userPW = req.query.userPW;
-  // res.send(userID+' '+userPW);
   console.log("ID : ", req.body.userID)
   console.log("PW : ", req.body.userPW)
   var uid=req.body.userID;
   var pwd=req.body.userPW;
-  // var query={id:req.body.userID};
-  // var table=db.collection("Users").findOne({query},function(err,result){
-  //   if(err)throw err;
-  //   console.log(result);
-  //   if(uid===result.id && pwd===result.password){
-  //     res.render('pages/mainframe');
-  //   }else{
-  //     res.send('who are you <a href="/logInpage">login</a>')
-  //   }
-  // })
   User.findOne({'id':uid}).exec(function(err,user){
-    var chk=false;
     console.log(user+"\n");
-    
+    if(user==null){
+      res.redirect('/logInpage');
+    }
+    else{
     bcrypt.compare(pwd,user.password,function(err,ret){
       if(err){
         console.log('bcrypt compare error : ',err.message);
       }else{
         console.log(ret);
         if(ret){
-          res.render('pages/mainframe',{chk:'0',name:user.name});
+          var yname=user.name;
+          req.session.userName=yname;
+          req.session.userkey=user._id;
+          req.session.userdb=user;
+          Proj.find({"user":{$elemMatch:{"_id":req.session.userkey}}}).exec(function(err,projList){
+            if(err) return console.log(err);
+            console.log(projList+"\n");
+            if(projList==null){
+              res.render("pages/project",{name:req.session.userName, pList:'0'});
+            }
+            else{
+              res.render("pages/project",{name:req.session.userName, pList: projList});
+            }
+          })
         }
         else{
           res.redirect('/logInpage');
         }
       }
     })
+  }
   })
-  //res.render('pages/mainframe')
 })
 app.post('/signUpReceiver', function (req, res){
   console.log("ID : ", req.body.signID)
@@ -114,7 +105,6 @@ app.post('/signUpReceiver', function (req, res){
   console.log("Name : ", req.body.signName)
   console.log("E mail : ",req.body.signEmail)
   var userdata=new User({
-    usernum:'1',
     id:req.body.signID,
     password:req.body.signPW,
     name:req.body.signName
@@ -125,28 +115,25 @@ app.post('/signUpReceiver', function (req, res){
   })
   res.render('pages/logInpage')
 })
-
+app.get('/selectProjRe',function(req,res){
+  console.log("here");
+  Proj.find({"user":{$elemMatch:{"_id":req.session.userkey}}}).exec(function(err,projList){
+    if(err) return console.log(err);
+    var pList1=projList;
+    console.log(pList1+"\n");
+    if(pList1==null){
+      res.render("pages/project",{name:req.session.userName, pList:'0'});
+    }
+    else{
+      res.render("pages/project",{name:req.session.userName, pList:pList1});//pList1});
+    }
+  })
+})
+app.get('/mainframe',function (req,res){
+  res.render("pages/mainframe",{chk:'0', name:req.session.userName});
+})
 app.get('/manageVerRe',function(req,res){
   res.render("pages/mainframe",{chk:'1'});
-//   var lis='';
-//   for(var i=0;i<5;++i){
-//     lis+='<li>coding '+i+'</li>';
-//   }
-//   var output=`
-//   <!DOCTYPE html>
-//   <html>
-//     <head>
-//       <meta charset="utf-8">
-//     </head>
-//     <body>
-//       hello Dynamic html~~!
-//           <ul>
-//               ${lis} <!--문자열 내에서 변수 사용-->
-//           </ul>
-//     </body>
-//   </html>
-//   `;
-// res.send(output);
 })
 app.get('/fileupRe',function(req,res){
   res.render("pages/mainframe",{chk:'2'});
@@ -157,32 +144,31 @@ app.get('/voteRe',function(req,res){
 app.get('/scheduleManageRe',function(req,res){
   res.render("pages/mainframe",{chk:'4'});
 })
-
-// express()
-//   .use(express.static(path.join(__dirname, 'public')))
-//   .set('views', path.join(__dirname, 'views'))
-//   .set('view engine', 'ejs')
-//   .get('/', (req, res) => res.render('pages/logInpage'))
-//   .get('/time',(req, res)=>res.send(showTimes()))
-//   .get('/db',async(req, res)=>{
-//     try{
-//       const client = await pool.connect()
-//       const result = await client.query('SELECT * FROM test_table');
-//       const result = {'results': (result) ? result.rows : null};
-//       res.render('pages/db',results);
-//       client.release();
-//     } catch(err){
-//       console.error(err);
-//       res.send("Error "+err);
-//     }
-//   })
-//   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
-//   .get('/form_receiver', (req, res)=>{
-//     var userID = req.query.userID;
-//     var userPW = req.query.userPW;
-//     res.send(userID+' '+userPW);
-//   })
-  
+app.get('/teamManageRe',function(req,res){
+  res.render("pages/mainframe",{chk:'5'});
+})
+var _storage = multer.diskStorage({
+  destination: function (req,file,cb){
+    cb(null, 'uploads/')  //이경로에 저장
+  },
+  filename: function(req, file, cb) {
+    cb(null, file.originalname);
+  }
+})
+var upload = multer({ storage: _storage});
+app.get('/uploadWin',function(req,res){
+  res.render("pages/popup_upload");
+});
+app.get('/popup_vote',function(req,res){
+  res.render("pages/popup_vote");
+});
+app.get('/popup_work',function(req,res){
+  res.render("pages/popup_work");
+});
+app.post('/uploadFile',upload.single('userFile'),function(req,res){
+  console.log(req.file);
+  res.send('Uploaded:'+req.file.filename);
+})
 showTimes = () => {
   let result =''
   const times = process.env.TIMES || 5
