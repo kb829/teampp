@@ -9,6 +9,7 @@ var multer = require('multer');
 var http = require('http');
 var fs = require('fs');
 var url = require('url');
+var order=0;
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended : true}))
@@ -43,19 +44,6 @@ app.get('/popup_projRe',function(req,res){
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 app.post('/logInReceiver', function (req, res){
-  // console.log("ID : ", req.body.userID)
-  // console.log("PW : ", req.body.userPW)
-  // var adminID='admin';
-  // var adminPW='404';
-  // var uid=req.body.userID;
-  // var pwd=req.body.userPW;
-  // req.session.userID=uid;
-  // if(uid==adminID && pwd==adminPW){
-  //   res.render('pages/adminMain',{name:req.session.userID});
-  // }
-  // else{
-  //   res.render('pages/project', {chk:'0', name:req.session.userID, projectcnt});
-  // }
   req.session.userID=req.body.userID;
   if(req.body.userID=='admin'  && req.body.userPW=='404')
   {
@@ -85,6 +73,9 @@ app.post('/logInReceiver', function (req, res){
       if((id == req.body.userID) &&(pass ==req.body.userPW) )
       {
         res.render('pages/project', {name:req.session.userID});
+      }
+      else{
+        res.render('pages/logInpage');
       }
     });
   }
@@ -150,10 +141,24 @@ app.get('/uploadWin',function(req,res){
 app.get('/popup_vote',function(req,res){
   res.render("pages/popup_vote");
 });
+app.get('/popup_notice_new',function(req,res){
+  res.render("pages/popup_notice_new");
+});
 app.post('/uploadFile',upload.single('userFile'),function(req,res){
   console.log(req.file);
   res.send('Uploaded:'+req.file.filename);
 })
+app.get('/down/:file(*)',(req, res) => {
+  var file = req.params.file;
+  console.log(file);
+  var fn;
+  fs.readdir('./uploads', function(error, filelist){
+    fn= filelist[file-1];
+    console.log(fn);
+    var fileLocation = path.join('uploads',fn.toString());
+    res.download(fileLocation, fn); //경로의 파일을 다운로드
+  });
+});
   
 showTimes = () => {
   let result =''

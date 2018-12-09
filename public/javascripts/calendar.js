@@ -27,13 +27,13 @@ var today = new Date();//오늘 날짜//내 컴퓨터 로컬을 기준으로 tod
             /*달력 출력*/
              for (i=1; i<=lastDate.getDate(); i++) {
                   cell = row.insertCell();//열 한칸한칸 계속 만들어주는 역할
-                  cell.innerHTML ="<button style='width:40px;height:40px; font-size:20px;color: black; background-color:white; border: 1px solid transparent; border-radius: 4px;'>" + i;//셀을 1부터 마지막 day까지 HTML 문법에 넣어줌
+                  cell.innerHTML ="<button id='chk' onclick='changecolor(this.style.background-color)' style='width:40px;height:40px; font-size:20px;color: black; background-color:white; border: 1px solid transparent; border-radius: 4px;'>" + i;//셀을 1부터 마지막 day까지 HTML 문법에 넣어줌
                   cnt = cnt + 1;//열의 갯수를 계속 다음으로 위치하게 해주는 역할
               if (cnt % 7 == 1) {/*일요일 계산*/
-                cell.innerHTML = "<button style='width:40px;height:40px; font-size:20px;color: red; background-color:white; border: 1px solid transparent; border-radius: 4px;'>" + i
+                cell.innerHTML = "<button onclick='changecolor(this)' style='width:40px;height:40px; font-size:20px;color: red; background-color:white; border: 1px solid transparent; border-radius: 4px;'>" + i
               }
               if (cnt%7 == 0){/* 1주일이 7일 이므로 토요일 구하기*/
-                  cell.innerHTML = "<button style='width:40px;height:40px; font-size:20px;color: skyblue; background-color:white; border: 1px solid transparent; border-radius: 4px;'>" + i
+                  cell.innerHTML = "<button onclick='changecolor(this)' style='width:40px;height:40px; font-size:20px;color: skyblue; background-color:white; border: 1px solid transparent; border-radius: 4px;'>" + i
                    row = calendar.insertRow();
               }
               /*오늘의 날짜에 노란색 칠하기*/

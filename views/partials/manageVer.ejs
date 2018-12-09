@@ -70,19 +70,20 @@
               document.getElementById('outputdiv').innerHTML = ds;
             }
             </SCRIPT>
-            <div style="float:left; width:30%;">
-                <ul style="list-style-type: none; font-size:30px; text-align: left; margin-left: 80px;margin-top: 40px">
-                    <li onclick="">● Version 1.1.0</li>
-                    <br>
-                    <li onclick="">● Version 1.0.3</li>
-                    <br>
-                    <li onclick="">● Version 1.0.2</li>
-                    <br>
-                    <li onclick="">● Version 1.0.1</li>
-                    <br>
-                    <li onclick="">● Version 1.0.0</li>
-                </ul>
-            </div>
+
+<div style="float:left; width:30%;">
+        <ul style="list-style-type: none; font-size:30px; text-align: left; margin-left: 80px;margin-top: 40px">
+                <li><input type="button" value="● Version 1.0.0" onclick="toDownload1();"></li>
+                <br>
+                <li><input type="button" value="● Version 1.0.1" onclick="toDownload2();"></li>
+                <br>
+                <li><input type="button" value="● Version 1.0.2" onclick="toDownload3();"></li>
+                <br>
+                <li><input type="button" value="● Version 1.0.3" onclick="toDownload4();"></li>
+                <br>
+                <li><input type="button" value="● Version 1.1.0" onclick="toDownload5();"></li>
+        </ul>
+    </div>
             <div style="float:right; width:50%; margin-top: 30px; margin-right:100px">
             <FORM action="#" onsubmit="return false;">
             <TABLE WIDTH="100%"><TR>
@@ -115,7 +116,7 @@
             
             </TR></TABLE>
             
-            <P><INPUT TYPE="button" onClick="launch();" VALUE="Compute Diff"></P>
+            <P><INPUT TYPE="button" class="compute_btn" onClick="launch();" VALUE="다른 점 찾기"></P>
             
             </FORM>
             <DIV ID="outputdiv" style=""></DIV>

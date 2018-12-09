@@ -40,3 +40,23 @@ function projectListRe(){
 function userListRe(){
     location.href="/adminUserRe";
 }
+function toDownload1()
+{
+  location.href="down/1";
+}
+function toDownload2()
+{
+  location.href="down/2";
+}
+function toDownload3()
+{
+  location.href="down/3";
+}
+function toDownload4()
+{
+  location.href="down/4";
+}
+function toDownload5()
+{
+  location.href="down/5";
+}

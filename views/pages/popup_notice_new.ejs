@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>table test</title>
+    <link href="/stylesheets/notice.css" rel="stylesheet">
+    <script language="javascript" type="text/javascript">
+
+        function apeneraddRow() {
+
+            opener.document.getElementById("id").value = document.getElementById("id1").value;
+            opener.document.getElementById("name").value = document.getElementById("name1").value;
+            opener.document.getElementById("address").value = document.getElementById("address1").value;
+
+//            var id = document.getElementById("id1").value;
+//            var name = document.getElementById("name1").value;
+//            var address = document.getElementById("address1").value;
+
+            parent.opener.addRow();
+        }
+
+    </script>
+</head>
+<body>
+    제목 : <input type="text" name="id" id="id1" placeholder="제목"  maxlength="20" size="20"/><br>
+    내용 : <input type="text" name="name" id="name1" placeholder="내용" maxlength="200" size="100"/><br>
+    추가 : <input type="text" name="address" id="address1" placeholder="추가내용"/><br>
+    <input type="button" value=" 추가 " class="notice_btn01" onclick="apeneraddRow()"/>
+    <input type="button" value=" 삭제 " class="notice_btn01" onclick="opener.delRow1(document.all.dyntbl1)"/>
+</body>
+</html>

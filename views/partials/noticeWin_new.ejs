@@ -1,0 +1,76 @@
+<link href="/stylesheets/notice.css" rel="stylesheet">
+<script language="javascript" type="text/javascript">
+    var liRowIdx = 0;
+
+    // Row 추가.
+    function addRow() {
+        var vid = document.getElementById("id").value,
+        vname = document.getElementById("name").value,
+        vaddress = document.getElementById("address").value;
+        if (vid != "" && vname != "" && vaddress != ""){
+            var oRow = document.all.dyntbl1.insertRow();
+            // onmouseover이벤트가 발생될때 fncOnMouseOver함수를 호출한다.
+            // 생성된 TR(Row)에 스타일 속성값을 정의 한다.
+            //oRow.style.backgroundColor = '#b0b0b0';
+
+            var oCell0 = oRow.insertCell();
+            var oCell1 = oRow.insertCell();
+            var oCell2 = oRow.insertCell();
+            var oCell3 = oRow.insertCell();
+
+            oCell0.innerHTML = liRowIdx;    //번호 출력
+            oCell1.innerHTML = vid; //아이디
+            oCell2.innerHTML = vname;   //이름
+            //oCell3.innerHTML = "<a href='#' onClick=\"delRow(" + tbl.id + ")\">삭제<\/a>";
+            oCell3.innerHTML = vaddress;    //주소
+            document.getElementById("id").value = "";
+            document.getElementById("name").value = "";
+            document.getElementById("address").value = "";
+            // RowIndex의 자동 재설정을 보여주기 위해 생성시마다 1씩 증가하는 변수.
+            liRowIdx++;
+        }
+        else{
+   //         alert("모든 데이터를 입력해 주세요");
+        }
+    }
+
+    // Row 최하단 추가 글 삭제
+    function delRow1(tdl) {
+        // table에서 지정한 줄(tr)을 rows 컬렉션에서 삭제한다.
+        if (liRowIdx > 0) {
+            dyntbl1.deleteRow(liRowIdx--);
+        }
+    }
+
+    function newpopup() {
+        window.open("popup_notice_new", "NEW NOTICE", "width=800, height=200,left=100,top=100,toolbar=no, location=no, directories=no, status=no, menubar=no, resizable=no, scrollbars=no, copyhistory=no");
+    }
+
+</script>
+        <input type="hidden" name="id" id="id" value=""  maxlength="100" size="0"/>
+        <input type="hidden" name="name" id="name" value="" maxlength="100" size="0"/>
+        <input type="hidden" name="address" id="address" value=""/>
+    <div style="float: none; width:100%; position: relative; float:left; height:80%; overflow-y:scroll;border-bottom:1px solid rgb(182, 102, 219);">
+        <div style="float:left;width:100%;">
+            <table id="dyntbl1" border="1" style="width:100%; border: 2px solid rgb(182, 102, 219);">
+                <tr style="border: 2px solid rgb(182, 102, 219);">
+                    <td width="5%" style="border: 2px solid rgb(182, 102, 219);">
+                        번호
+                    </td>
+                    <td width="20%" style="border: 2px solid rgb(182, 102, 219);">
+                        제목
+                    </td>
+                    <td width="55%" style="border: 2px solid rgb(182, 102, 219);">
+                        내용
+                    </td>
+                    <td width="20%" style="border: 2px solid rgb(182, 102, 219);">
+                        요약
+                    </td>
+                </tr>
+            </table>
+            <br />
+        </div>
+    </div>
+<input type="button" value=" 공지등록 " class="notice_btn02" onclick="newpopup()"/>
+</body>
+</html>
