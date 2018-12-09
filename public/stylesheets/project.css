@@ -1,177 +1,61 @@
 .logIn { 
-
-
    position: relative; 
-
-
    margin: 50px auto; 
-
-
    width: 350px; 
-
-
    padding: 33px 25px 29px; 
-
-
    border-bottom: 1px solid rgb(182, 102, 219); 
-
-
    border-left:1px solid rgb(182, 102, 219); 
-
-
    border-right:1px solid rgb(182, 102, 219); 
-
-
    border-radius: 0px; 
-
-
 } 
-
-
 .logIn1 { 
-
-
    position: relative; 
-
-
    margin: 50px auto; 
-
-
    width: 500px; 
-
-
    padding: 10px 10px 10px; 
-
-
    border-radius: 0px; 
-
-
 } 
-
-
 .field{ 
-
-
    float: right; 
-
-
    width: 100%; 
-
-
    padding-left: 10px; 
-
-
    padding-top:20px; 
-
-
    padding-right: 30px; 
-
-
    height:70px; 
-
-
    width:100%; 
-
-
    clear:both; 
-
-
    font-size:14px; 
-
-
    border-left:1px solid rgb(182, 102, 219); 
-
-
    border-right:1px solid rgb(182, 102, 219); 
-
-
 } 
-
-
 .leftUp{ 
-
-
    float:left; 
-
-
    width:20%; 
-
-
    height:130px; 
-
-
 } 
-
-
 .logInTitleImage{ 
-
-
    float: left; 
-
-
    width:60%; 
-
-
    height:100px; 
-
-
    background:url("Tppimage.png") no-repeat; 
-
-
    background-size:228px 130px; 
-
-
 } 
-
-
 .rightUp{ 
-
-
    float:right; 
-
-
    width:30%; 
-
-
    height:130px; 
-
-
 } 
-
-
 .logInTitle { 
-
-
    margin: -25px -25px 25px; 
-
-
    padding: 15px 25px; 
-
-
    line-height: 35px; 
-
-
    font-size: 26px; 
-
-
    font-weight: 300; 
-
-
    color: rgb(92, 2, 114); 
-
-
    text-align: center; 
-
-
    text-shadow: 0 1px rgba(255, 255, 255, 0.75); 
-
-
    background: #F7F7F7; 
-
-
 } 
-
-
 .formBottom{ 
 
 
@@ -206,8 +90,6 @@
 
 
 } 
-
-
 .formProject{ 
 
 
@@ -236,11 +118,7 @@
 
 
    border-left:1px solid rgb(182, 102, 219); 
-
-
 } 
-
-
 .logInButton { 
 
 
@@ -278,11 +156,7 @@
 
 
    cursor: pointer; 
-
-
 } 
-
-
 .projectButton { 
 
 
@@ -320,11 +194,7 @@
 
 
    cursor: pointer; 
-
-
 } 
-
-
 .logInInput { 
 
 
@@ -353,8 +223,6 @@
 
 
 } 
-
-
 .test{ 
 
 

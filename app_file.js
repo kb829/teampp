@@ -26,10 +26,19 @@ app.get('/time',(req, res)=>res.send(showTimes()))
 app.get('/signUp',(req, res)=>res.render('pages/signUp'))
 app.get('/popup_Proj',(req, res)=>res.render('pages/popup_Proj'))
 app.get('/project',(req, res)=>res.render('pages/project'))
-app.post('/popup_projRe',function(req,res){
-  console.log("Project name : ", req.body.Project_name);
-
-  
+// app.post('/popup_projRe',function(req,res){
+//
+//   console.log("Project name : ", req.body.Project_name);
+// })
+app.post('/popupProj',function(req,res){
+  projectcnt=projectcnt+1;
+  console.log("Project name : ", {proname:req.body.Project_name, projectcnt});
+  res.render('pages/project',{proname:req.body.Project_name, projectcnt});
+});
+var projectcnt=0;
+app.get('/popup_projRe',function(req,res){
+  projectcnt=projectcnt+1;
+  console.log("Project name : ", {projectcnt});
 })
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
@@ -45,7 +54,7 @@ app.post('/logInReceiver', function (req, res){
     res.render('pages/adminMain',{name:req.session.userID});
   }
   else{
-    res.render('pages/project', {chk:'0', name:req.session.userID});
+    res.render('pages/project', {chk:'0', name:req.session.userID, projectcnt});
   }
 })
 app.post('/signUpReceiver', function (req, res){
@@ -59,7 +68,7 @@ app.post('/signUpReceiver', function (req, res){
   res.render('pages/logInpage');
 })
 app.get('/selectProjRe',function(req,res){
-  res.render("pages/project.ejs",{name:req.session.userID});
+  res.render("pages/project.ejs",{name:req.session.userID, projectcnt});
 })
 app.get('/mainframe',function (req,res){
   res.render("pages/mainframe",{chk:'0', name:req.session.userID});
@@ -78,6 +87,15 @@ app.get('/scheduleManageRe',function(req,res){
 })
 app.get('/teamManageRe',function(req,res){
   res.render("pages/mainframe",{chk:'5'});
+})
+app.get('/adminmain',function(req,res){
+  res.render()
+})
+app.get('/adminProjectRe',function(req,res){
+  res.render("pages/adminMain",{chk:'1'});
+})
+app.get('/adminUserRe',function(req,res){
+  res.render("pages/adminMain",{chk:'2'});
 })
 var _storage = multer.diskStorage({
   destination: function (req,file,cb){

@@ -21,26 +21,21 @@
 
 		<div class="menu_main" id="sidebar">
 <ul>
-<li><button href="#" class="menu_btn"> Project<p> List<p></button></li>
-<li><button href="/scheduleManageRe" class="menu_btn" onclick="scheduleManageRe()">User<p> List<p></button></li>
+<li><button href="#" class="menu_btn" onclick="projectListRe()"> Project<p> List<p></button></li>
+<li><button href="#" class="menu_btn" onclick="userListRe()">User<p> List<p></button></li>
 </ul>
 		</div>
 	</div>
 
 	<div class="wrapper_right">
 		<div class = "tab_main">
-					<%= name%> 님 안녕하세요!
+					<% if(chk=='1'){ %>
+						<% include ../partials/adminProject.ejs %>
+					<% } else{ %>
+						<% include ../partials/adminUser.ejs %>
+					<% } %>
 		</div>
 	</div>
-</div>
-
-<div class="wrapper_bottom">
-		<div class = "check_main">
-
-		</div>
-		<div class = "notice_main">
-
-		</div>
 </div>
 
 	 <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->

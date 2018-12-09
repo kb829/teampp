@@ -20,7 +20,7 @@ function toUpload(){
     window.open("/uploadWin", "new_upl", 'width=500, height=300, resizable=no, scrollbars= 0, toolbar=0, menubar=no');
 }
 function popup_project(){
-    window.open("popup_Proj", "new_Project", 'width=500, height=300, resizable=no, scrollbars= 0, toolbar=0, menubar=no');
+    window.open("/popup_Proj", "new_Project", 'width=500, height=300, resizable=no, scrollbars= 0, toolbar=0, menubar=no');
 }
 function select_proj(){
     location.href="/mainframe";
@@ -32,5 +32,11 @@ function teamManageRe(){
     location.href="/teamManageRe";
 }
 function toSubmitVote(){
-    window.open("popup_vote", "new_Project", 'width=500, height=300, resizable=no, scrollbars= 0, toolbar=0, menubar=no');
+    window.open("/popup_vote", "new_Project", 'width=500, height=300, resizable=no, scrollbars= 0, toolbar=0, menubar=no');
+}
+function projectListRe(){
+    location.href="/adminProjectRe";
+}
+function userListRe(){
+    location.href="/adminUserRe";
 }

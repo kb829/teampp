@@ -7,9 +7,17 @@
   <title>Register</title>
   <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
  <link  href="/stylesheets/popup_proj.css" rel="stylesheet" type="text/css">
+ <script>
+     function setProjname(){
+         opener.document.getElementById("Projname").value=document.getElementById("projname").value;
+         opener.cnt=opener.cnt+1;
+         opener.logInform.submit();
+         window.close();
+     }
+ </script>
 </head>
 <body>
-  <form class="logIn1" id="logInform" action = '/popupProj' method ="POST">
+  <form class="logIn1" id="logInform">
       <div id="leftU" class="leftUp">
           <div id="leftUp" style="height:50%"></div>
           <div id="leftDown" style="height:50%; border-left:1px solid rgb(182, 102, 219); border-top:1px solid rgb(182, 102, 219)"></div>
@@ -24,12 +32,12 @@
       <div id="nameField" class="field">
         <span style="float:right">
             <label style="text-align: right"> Project name
-              <input type="text" class="logInInput" placeholder="15자 내외" name="Project_name" size="15" required>
+              <input type="text" id="projname" class="logInInput" placeholder="15자 내외" name="Project_name" size="15" required>
             </label>
         </span>
       </div>
       <div id="bottom" class="formBottom">
-          <input type="submit" value="생성" onclick="javascript:window.close();" class="logInButton">  
+          <input type="submit" value="생성" onclick="setProjname()" class="logInButton">  
           <input type="button" value="취소" onclick="javascript:window.close();" class="logInButton">
       </div>
   </form>
