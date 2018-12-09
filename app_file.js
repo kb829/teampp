@@ -26,31 +26,26 @@ app.get('/time',(req, res)=>res.send(showTimes()))
 app.get('/signUp',(req, res)=>res.render('pages/signUp'))
 app.get('/popup_Proj',(req, res)=>res.render('pages/popup_Proj'))
 app.get('/project',(req, res)=>res.render('pages/project'))
-app.post('/popupProj',function(req,res){
+app.post('/popup_projRe',function(req,res){
   console.log("Project name : ", req.body.Project_name);
-  var userproj=new Proj({
-    name:req.body.Project_name,
-    leader:req.session.userkey,
-    user:req.session.userdb
-  })
-  userproj.save(function(err,userproj){
-    if(err) return console.error(err);
-    console.dir(userproj);
-  })
+
+  
 })
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 app.post('/logInReceiver', function (req, res){
   console.log("ID : ", req.body.userID)
   console.log("PW : ", req.body.userPW)
+  var adminID='admin';
+  var adminPW='404';
   var uid=req.body.userID;
   var pwd=req.body.userPW;
   req.session.userID=uid;
-  if(req.body.signID=="admin" && req.body.signPW=="404"){
+  if(uid==adminID && pwd==adminPW){
     res.render('pages/adminMain',{name:req.session.userID});
   }
   else{
-    res.render('pages/mainframe', {chk:'0', name:req.session.userID});
+    res.render('pages/project', {chk:'0', name:req.session.userID});
   }
 })
 app.post('/signUpReceiver', function (req, res){
@@ -60,7 +55,8 @@ app.post('/signUpReceiver', function (req, res){
   console.log("Name : ", req.body.signName)
   console.log("E mail : ",req.body.signEmail)
 
-  res.render('pages/logInpage')
+
+  res.render('pages/logInpage');
 })
 app.get('/selectProjRe',function(req,res){
   res.render("pages/project.ejs",{name:req.session.userID});
@@ -88,6 +84,7 @@ var _storage = multer.diskStorage({
     cb(null, 'uploads/')  //이경로에 저장
   },
   filename: function(req, file, cb) {
+    req.session.fileoriginname=file.originalname;
     cb(null, file.originalname);
   }
 })

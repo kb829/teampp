@@ -23,37 +23,23 @@
 <ul>
 <li><button href="#" class="menu_btn"> Project<p> List<p></button></li>
 <li><button href="/scheduleManageRe" class="menu_btn" onclick="scheduleManageRe()">User<p> List<p></button></li>
-<li><button href="/teamManageRe" class="menu_btn" onclick="teamManageRe()">Team<p> Manager<p></button></li>
 </ul>
 		</div>
 	</div>
 
 	<div class="wrapper_right">
-		<button type="button" class="project_btn" onclick="toSubmitProject()" >변경</button>
 		<div class = "tab_main">
-				<% if(chk =='1'){ %>
-					<% include ../partials/manageVer.ejs %>
-				<% } else if(chk=='2'){ %>
-					<% include ../partials/fileUp.ejs %>
-				<% } else if(chk=='3') { %>
-					<% include ../partials/voteWin.ejs %>
-				<% } else if(chk=='4') { %>
-					<% include ../partials/scheduleManage.ejs %>
-				<% } else if(chk=='5') { %>
-					<% include ../partials/teamManage.ejs %>
-				<% } else { %>
 					<%= name%> 님 안녕하세요!
-				<% } %>
 		</div>
 	</div>
 </div>
 
 <div class="wrapper_bottom">
 		<div class = "check_main">
-				<% include ../partials/checkWin.ejs %>
+
 		</div>
 		<div class = "notice_main">
-				<% include ../partials/noticeWin.ejs %>
+
 		</div>
 </div>
 

@@ -25,18 +25,12 @@
       <div class="formProject">
             <%= name %>님 진행할 프로젝트를 골라주세요
       </div>
-      <% var i=0; %>
-      <% if(pList!='0'){ %>
-      <% while(i < pList.length){ %>
         <div id="project_${i}" class="formProject">
                 <input type="button" value="${pList[i].name}" onmouseout="change2(this)" onmouseover="change1(this)" class="projectButton" onclick = "select_proj()">
         </div>
-        <% i = i + 1; %>
-      <% }} else { %>
         <div id="project_01" class="formProject">
                 <input type="button" value="프로젝트를 생성해주세요" onmouseout="change2(this)" onmouseover="change1(this)" class="projectButton" onclick = "select_proj()">
         </div>
-      <% } %>
       <div id="bottom" class="formBottom">
           <input type="button" value="생성" class="logInButton" onclick = "popup_project()">  
       </div>
