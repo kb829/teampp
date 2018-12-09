@@ -24,15 +24,15 @@ width:1250px;
   position: relative;
   float:left;
   height:160px;
-  width:240px;
+  width:280px;
   margin-right:2px;
-  margin-left: 10px;
+  margin-left: 0px;
 }
 .project_btn {
   position: relative;
-  float:right;
   display: inline-block;
-  width: 90px;
+  float:right;
+  width: 110px;
   font-size: 12px;
   color: white;
   background-color: rgb(182, 102, 219);
@@ -52,6 +52,7 @@ width:1250px;
   background-image: none;
   border: 1px solid transparent;
   border-radius: 4px;
+
 }
 .menu_btn {
   position: relative;
@@ -115,7 +116,7 @@ width:1250px;
     width: 99%;
     margin-top: 5px;
     margin-left: 10px;
-    border-top:2px solid rgb(182, 102, 219);
+    border-top:25px solid rgb(182, 102, 219);
     border-right:2px solid rgb(182, 102, 219);
     border-left:2px solid rgb(182, 102, 219);
     border-bottom:2px solid rgb(182, 102, 219);
@@ -126,7 +127,7 @@ width:1250px;
  height:260px;
  width:22%;
  float:left;
- border-top:2px solid rgb(182, 102, 219);
+ border-top:25px solid rgb(182, 102, 219);
  border-right:2px solid rgb(182, 102, 219);
  border-left:2px solid rgb(182, 102, 219);
  border-bottom:2px solid rgb(182, 102, 219);
@@ -137,7 +138,7 @@ width:1250px;
   height:260px;
   width:77%;
   float:right;
-  border-top:2px solid rgb(182, 102, 219);
+  border-top:25px solid rgb(182, 102, 219);
   border-right:2px solid rgb(182, 102, 219);
   border-left:2px solid rgb(182, 102, 219);
   border-bottom:2px solid rgb(182, 102, 219);

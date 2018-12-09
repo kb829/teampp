@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Register</title>
+  <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+ <link  href="/stylesheets/popup_proj.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+  <form class="main_Pro" id="logInform" action = '/popupTeam' method ="POST">
+      <div id="titleName" class="title_Pro">
+        New team
+        </div>
+      <div id="nameField" class="field_Pro">
+        <span style="float:right">
+            <label style="text-align: right"> 팀원 추가
+              <input type="search" class="Input_Pro" placeholder="검색" name="Project_name" size="14" required>
+            </label>
+        </span>
+      </div>
+      <div id="bottom" class="formBottom_Pro">
+          <input type="submit" value="추가" onclick="javascript:window.close();" class="Button_Pro">  
+          <input type="button" value="취소" onclick="javascript:window.close();" class="Button_Pro">
+      </div>
+  </form>
+  <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
+
+  <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script type="text/javascript" src="/javascripts/teamList.js"></script>
+<script type="text/javascript" src="/javascripts/changePage.js"></script>
+
+</body>
+</html>
