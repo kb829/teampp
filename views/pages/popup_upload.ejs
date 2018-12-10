@@ -10,11 +10,11 @@
   <link  href="/stylesheets/popup_Upload.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-  <form class="main_Upload" id="logInform" action="upload/create" method = "post"
+  <form class="main_Upload" id="logInform" action="uploadFile" method = "POST"
   enctype ="multipart/form-data">
       <div id="titleName" class="title_Upload">File Upload</div>
       <div class="field_Upload">
-        <input type="file" id="uploadFile">
+        <input type="file" id="filename" name="userFile">
       </div>
       <div id="bottom" class="formBottom_Upload">
           <input type="submit" value="Submit" onclick="javascript:self.close();" class="Button_Upload">

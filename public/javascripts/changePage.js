@@ -25,6 +25,9 @@ function popup_project(){
 function select_proj(){
     location.href="/mainframe";
 }
+function select_proj1(){
+    location.href="/mainframe1Re";
+}
 function toSubmitProject(){
     location.href="/selectProjRe";
 }
@@ -60,3 +63,6 @@ function toDownload5()
 {
   location.href="down/5";
 }
+function popup_team(){
+    window.open("popup_team", "new_Vote", 'width=500, height=300, resizable=no, scrollbars= 0, toolbar=0, menubar=no');
+ }

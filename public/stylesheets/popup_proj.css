@@ -1,74 +1,61 @@
- .logIn1 {
-    position: center;
-    margin: 0px;
-    width: 500px;
-    height: 300px;
-    /*padding: 0px 0px 0px;*/
-    border-radius: 0px;
- }
- .title{
-   text-allign: center;
-   padding-left: 170px;
-   font-size: 30px;
-   border-left:1px solid rgb(182, 102, 219);
-   border-right:1px solid rgb(182, 102, 219);
- }
- .field{
-    float: center;
-    width: 100%;
-    padding-left: 10px;
-    padding-top: 20px;
-    padding-right: 90px;
-    height:70px;
-    width:100%;
-    clear:both;
-    font-size:14px;
-    border-left:1px solid rgb(182, 102, 219);
-    border-right:1px solid rgb(182, 102, 219);
- }
- .leftUp{
-    float:left;
-    width:50%;
-    height:30px;
- }
- .rightUp{
-    float:right;
-    width:50%;
-    height:30px;
- }
- .formBottom{
-    height:100px;
-    width:100%;
-    clear:both;
-    float:center;
-    text-align: center;
-    padding-top:20px;
-    padding-bottom: 30px;
-    border-right:1px solid rgb(182, 102, 219);
-    border-left:1px solid rgb(182, 102, 219);
-    border-bottom:1px solid rgb(182, 102, 219);
- }
- .logInButton {
-    vertical-align: top;
-    width: 120px;
-    height: 40px;
-    padding: 0;
-    font-size: 18px;
-    color: white;
-    text-align: center;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
-    background: rgb(182, 102, 219);
-    border: 0;
-    border-radius: 5px;
-    cursor: pointer;
- }
- .logInInput {
-    width: 230px;
-    height: 40px;
-    margin-bottom: 25px;
-    padding: 0 15px 2px;
-    font-size: 17px;
-    background: white;
-    border: 2px solid rgb(182, 102, 219);
-    border-radius: 4px;
- }
+.main_Pro {
+   position: center;
+   margin: 0px;
+   width: 490px;
+   height: 300px;
+   /*padding: 0px 0px 0px;*/
+   border-radius: 0px;
+  border-top:30px solid rgb(182, 102, 219);
+ border-right:2px solid rgb(182, 102, 219);
+  border-left:2px solid rgb(182, 102, 219);
+  border-bottom:2px solid rgb(182, 102, 219);
+}
+.title_Pro{
+  text-allign: center;
+  padding-top: 10px;
+  padding-left: 170px;
+  font-size: 30px;
+}
+.field_Pro{
+   float: center;
+   width: 100%;
+   padding-left: 10px;
+   padding-top: 10px;
+   padding-right: 90px;
+   height:30px;
+   width:100%;
+   clear:both;
+   font-size:14px;
+}
+.formBottom_Pro{
+   height:70px;
+   width:100%;
+   clear:both;
+   float:center;
+   text-align: center;
+   padding-top:0px;
+   padding-bottom: 60px;
+}
+.Button_Pro {
+   vertical-align: top;
+   width: 120px;
+   height: 40px;
+   padding: 0px;
+   font-size: 18px;
+   color: white;
+   text-align: center;
+   background: rgb(182, 102, 219);
+   border: 0;
+   border-radius: 5px;
+   cursor: pointer;
+}
+.Input_Pro {
+   width: 230px;
+   height: 40px;
+   margin-bottom: 25px;
+   padding: 0 15px 2px;
+   font-size: 17px;
+   background: white;
+   border: 2px solid rgb(182, 102, 219);
+   border-radius: 4px;
+}

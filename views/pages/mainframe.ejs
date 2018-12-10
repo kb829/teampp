@@ -38,15 +38,15 @@
 	<div class="wrapper_right">
 		<span style="float:right; width:90px"><button type="button" class="project_btn" onclick="toSubmitProject()" >변경</button></span>
 		<div class = "tab_main" style="overflow: scroll">
-				<% if(chk =='1'){ %>
+				<% if(porder =='1'){ %>
 					<% include ../partials/manageVer.ejs %>
-				<% } else if(chk=='2'){ %>
+				<% } else if(porder=='2'){ %>
 					<% include ../partials/fileUp.ejs %>
-				<% } else if(chk=='3') { %>
+				<% } else if(porder=='3') { %>
 					<% include ../partials/voteWin.ejs %>
-				<% } else if(chk=='4') { %>
+				<% } else if(porder=='4') { %>
 					<% include ../partials/scheduleManage.ejs %>
-				<% } else if(chk=='5') { %>
+				<% } else if(porder=='5') { %>
 					<% include ../partials/teamManage.ejs %>
 				<% } else { %>
 					<%= name%> 님 안녕하세요!

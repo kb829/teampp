@@ -8,37 +8,28 @@
   <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
  <link  href="/stylesheets/popup_proj.css" rel="stylesheet" type="text/css">
  <script>
-     function setProjname(){
-         opener.document.getElementById("Projname").value=document.getElementById("projname").value;
-         opener.cnt=opener.cnt+1;
-         opener.logInform.submit();
-         window.close();
+     function parentchange(){
+        //opener.document.getElementById("Projname").value=document.getElementById("Project_name").value;
+        opener.location.href='project1Re';
+        window.close();
      }
  </script>
 </head>
 <body>
-  <form class="logIn1" id="logInform">
-      <div id="leftU" class="leftUp">
-          <div id="leftUp" style="height:50%"></div>
-          <div id="leftDown" style="height:50%; border-left:1px solid rgb(182, 102, 219); border-top:1px solid rgb(182, 102, 219)"></div>
-      </div>
-      <div id="rightU" class="rightUp">
-          <div id="rightUp" style="height:50%"></div>
-          <div id="rightDown" style="height:50%; border-top:1px solid rgb(182, 102, 219); border-right:1px solid rgb(182, 102, 219)"></div>
-      </div>
-      <div id="titleName" class="title">
+  <form class="main_Pro" id="logInform">
+      <div id="titleName" class="title_Pro">
         New Project
-      </div>
-      <div id="nameField" class="field">
+        </div>
+      <div id="nameField" class="field_Pro">
         <span style="float:right">
             <label style="text-align: right"> Project name
-              <input type="text" id="projname" class="logInInput" placeholder="15자 내외" name="Project_name" size="15" required>
+              <input type="text" class="Input_Pro" placeholder="15자 내외" name="Project_name" size="15" required>
             </label>
         </span>
       </div>
-      <div id="bottom" class="formBottom">
-          <input type="submit" value="생성" onclick="setProjname()" class="logInButton">  
-          <input type="button" value="취소" onclick="javascript:window.close();" class="logInButton">
+      <div id="bottom" class="formBottom_Pro">
+          <input type="submit" value="생성" onclick="javascript:parentchange();" class="Button_Pro">  
+          <input type="button" value="취소" onclick="javascript:self.close();" class="Button_Pro">
       </div>
   </form>
   <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->

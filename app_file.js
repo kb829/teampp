@@ -6,14 +6,22 @@ var session=require('express-session')
 var app=express()
 //multer
 var multer = require('multer');
-var http = require('http');
 var fs = require('fs');
-var url = require('url');
-var order=0;
+var order='0';
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended : true}))
 app.use(express.static(path.join(__dirname, 'public')))
+var _storage = multer.diskStorage({
+  destination: function (req,file,cb){
+    cb(null, 'uploads/')  //이경로에 저장
+  },
+  filename: function(req, file, cb) {
+    req.session.fileoriginname=file.originalname;
+    cb(null, file.originalname);
+  }
+})
+var upload = multer({ storage: _storage});
 app.use(session({
   secret:'1234DSFs@adf1234!@#$asd',
   resave: false,
@@ -27,14 +35,15 @@ app.get('/time',(req, res)=>res.send(showTimes()))
 app.get('/signUp',(req, res)=>res.render('pages/signUp'))
 app.get('/popup_Proj',(req, res)=>res.render('pages/popup_Proj'))
 app.get('/project',(req, res)=>res.render('pages/project'))
+app.get('/project1Re',(req,res)=>res.render('pages/project1',{name:req.session.userID}))
 // app.post('/popup_projRe',function(req,res){
 //
 //   console.log("Project name : ", req.body.Project_name);
 // })
 app.post('/popupProj',function(req,res){
-  projectcnt=projectcnt+1;
-  console.log("Project name : ", {proname:req.body.Project_name, projectcnt});
-  res.render('pages/project',{proname:req.body.Project_name, projectcnt});
+  porder='1';
+  console.log("Project name : ", {proname:req.body.Project_name});
+  res.render('pages/project',{name:req.session.userID, proname:req.body.Project_name, porder});
 });
 var projectcnt=0;
 app.get('/popup_projRe',function(req,res){
@@ -72,7 +81,7 @@ app.post('/logInReceiver', function (req, res){
       pass = array2[1];
       if((id == req.body.userID) &&(pass ==req.body.userPW) )
       {
-        res.render('pages/project', {name:req.session.userID});
+        res.render('pages/project', {name:req.session.userID, porder:order});
       }
       else{
         res.render('pages/logInpage');
@@ -96,25 +105,29 @@ app.post('/signUpReceiver', function (req, res){
   res.render('pages/logInpage');
 })
 app.get('/selectProjRe',function(req,res){
-  res.render("pages/project.ejs",{name:req.session.userID, projectcnt});
+  porder='1';
+  res.render("pages/project.ejs",{name:req.session.userID, porder:order});
 })
 app.get('/mainframe',function (req,res){
   res.render("pages/mainframe",{chk:'0', name:req.session.userID});
 })
+app.get('/mainframe1Re',function (req,res){
+  res.render("pages/mainframe",{porder:order, name:req.session.userID});
+})
 app.get('/manageVerRe',function(req,res){
-  res.render("pages/mainframe",{chk:'1'});
+  res.render("pages/mainframe",{porder:'1'});
 })
 app.get('/fileupRe',function(req,res){
-  res.render("pages/mainframe",{chk:'2'});
+  res.render("pages/mainframe",{porder:'2'});
 })
 app.get('/voteRe',function(req,res){
-  res.render("pages/mainframe",{chk:'3'});
+  res.render("pages/mainframe",{porder:'3'});
 })
 app.get('/scheduleManageRe',function(req,res){
-  res.render("pages/mainframe",{chk:'4'});
+  res.render("pages/mainframe",{porder:'4'});
 })
 app.get('/teamManageRe',function(req,res){
-  res.render("pages/mainframe",{chk:'5'});
+  res.render("pages/mainframe",{porder:'5'});
 })
 app.get('/adminmain',function(req,res){
   res.render()
@@ -125,16 +138,7 @@ app.get('/adminProjectRe',function(req,res){
 app.get('/adminUserRe',function(req,res){
   res.render("pages/adminMain",{chk:'2'});
 })
-var _storage = multer.diskStorage({
-  destination: function (req,file,cb){
-    cb(null, 'uploads/')  //이경로에 저장
-  },
-  filename: function(req, file, cb) {
-    req.session.fileoriginname=file.originalname;
-    cb(null, file.originalname);
-  }
-})
-var upload = multer({ storage: _storage});
+
 app.get('/uploadWin',function(req,res){
   res.render("pages/popup_upload");
 });
@@ -146,6 +150,7 @@ app.get('/popup_notice_new',function(req,res){
 });
 app.post('/uploadFile',upload.single('userFile'),function(req,res){
   console.log(req.file);
+  console.log(req.file.destination);
   res.send('Uploaded:'+req.file.filename);
 })
 app.get('/down/:file(*)',(req, res) => {
@@ -158,6 +163,9 @@ app.get('/down/:file(*)',(req, res) => {
     var fileLocation = path.join('uploads',fn.toString());
     res.download(fileLocation, fn); //경로의 파일을 다운로드
   });
+});
+app.get('/popup_team',function(req,res){
+  res.render("pages/popup_team");
 });
   
 showTimes = () => {
